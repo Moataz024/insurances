@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "157494589178",
+    "project_id": "insurances-management",
+    "storage_bucket": "insurances-management.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157494589178:android:98eab4a3bb59a8cde3bb43",
+        "android_client_info": {
+          "package_name": "com.foudhaili.insurances"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157494589178-40v4qnjmkehnhqu3g18r993m5d68urjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs9ULJwbAXGXiMt5PEo-4GGQZdRfjbYKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157494589178-40v4qnjmkehnhqu3g18r993m5d68urjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
