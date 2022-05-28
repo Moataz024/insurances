@@ -54,6 +54,7 @@ class _loginScreenState extends State<loginScreen> {
             );
           };
           if (state is InsurancesLoginSuccessState) {
+            bool? isClient;
             await FirebaseFirestore.instance.collection('clients').get()
               .then((value) {
                 value.docs.forEach((element) {

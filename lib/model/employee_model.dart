@@ -11,6 +11,7 @@ class EmployeeModel {
   bool? responsible;
   bool? confirmed;
   bool? isClient;
+  bool? accepted;
 
   EmployeeModel({
     this.email,
@@ -23,6 +24,7 @@ class EmployeeModel {
     this.responsible,
     this.confirmed,
     this.isClient,
+    this.accepted,
   });
 
 
@@ -37,6 +39,7 @@ class EmployeeModel {
     responsible = json['responsible'];
     confirmed = json['confirmed'];
     isClient = json['isClient'];
+    accepted = json['accepted'];
   }
 
   Map<String,dynamic> toMap(){
@@ -51,6 +54,7 @@ class EmployeeModel {
       'responsible' : responsible,
       'confirmed' : confirmed,
       'isClient' : isClient,
+      'accepted' : accepted,
     };
   }
 }

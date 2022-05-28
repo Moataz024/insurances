@@ -59,6 +59,9 @@ dependencies:
   flutter_toggle_tab: ^1.1.7
   timezone: ^0.8.0
   settings_ui: ^2.0.2
+  gradient_widgets: ^0.6.0
+  fbutton_nullsafety: ^5.0.0
+  progress_state_button: ^1.0.4
 
 
 dev_dependencies:

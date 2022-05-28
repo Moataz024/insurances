@@ -1,6 +1,9 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:fbutton_nullsafety/fbutton_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:insurances/screens/client_layouts/appointment_form.dart';
+import 'package:insurances/screens/client_layouts/calendar_view.dart';
 import 'package:insurances/shared/cubit/cli_agency_cubit/cli_agency_cubit.dart';
 import 'package:insurances/shared/cubit/cli_agency_cubit/cli_agency_states.dart';
 
@@ -20,55 +23,171 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
           listener: (BuildContext context, Object? state) {  },
             builder: (BuildContext context, state) => ConditionalBuilder(
               fallback: (BuildContext context) => Center(child: CircularProgressIndicator()),
-              builder: (BuildContext context) => Column(
-                children: [
-                  Center(child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 40,
-                      bottom: 10,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey[300],
-                          boxShadow:[
-                            BoxShadow(color: Colors.grey, spreadRadius: 2),
-                          ],
+              builder: (BuildContext context) => Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[150],
+                  boxShadow: [
+                    BoxShadow(color: Colors.white24, spreadRadius: 2)
+                  ]
+                ),
+                child: Column(
+                  children: [
+                    Center(child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 40,
+                        bottom: 10,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 10,
                         ),
-                        height: 70,
-                        child: Center(
-                          child: Text('${CliAgencyCubit.get(context).agencyModel.name}',
-                          style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 3,
-                            color: Colors.black38,
-                            shadows: [
-                              Shadow(
-                                color: Colors.blueGrey.shade900.withOpacity(0.5),
-                                offset: Offset(2, 2),
-                                blurRadius: 5,
-                              ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.blue[100],
+                            boxShadow:[
+                              BoxShadow(color: Colors.grey, spreadRadius: 2),
                             ],
                           ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                          height: 70,
+                          child: Center(
+                            child: Text('${CliAgencyCubit.get(context).agencyModel.name}',overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 40,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3,
+                              color: Colors.black38,
+                              shadows: [
+                                Shadow(
+                                  color: Colors.blueGrey.shade900.withOpacity(0.5),
+                                  offset: Offset(2, 2),
+                                  blurRadius: 5,
+                                ),
+                              ],
+                            ),
+                              maxLines: 2,
+                            ),
                           ),
                         ),
                       ),
+                      )
                     ),
-                    )
-                  ),
-                  Text('Responsisble : ${CliAgencyCubit.get(context).agencyModel.Location}'),
-                  Text('Contact :'),
-                  Text('Email : ${CliAgencyCubit.get(context).agencyModel.email}'),
-                  Text('Phone : ${CliAgencyCubit.get(context).agencyModel.contactPhone}'),
-                  Text('Responsible : ${CliAgencyCubit.get(context).employeeModel.fullName}'),
-                  Text('Phone : ${CliAgencyCubit.get(context).agencyModel.contactPhone}')
+                    Row(
+                      children: [
+                        Expanded(child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text('Location : ',style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15
+                          ),),
+                        )),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text('${CliAgencyCubit.get(context).agencyModel.Location}',overflow: TextOverflow.ellipsis),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Text('Contact phone : ',style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),),
+                        )),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text('${CliAgencyCubit.get(context).agencyModel.contactPhone}',overflow: TextOverflow.ellipsis,),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('Contact email: ',style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),),
+                        )),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text('${CliAgencyCubit.get(context).agencyModel.email}',overflow: TextOverflow.ellipsis),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text('Responsible : ',style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),),
+                        )),
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20),
+                            child: Text('${CliAgencyCubit.get(context).employeeModel.fullName}',overflow: TextOverflow.ellipsis),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 20
+                      ),
+                      child: ElevatedButton.icon(
 
-                ],
+                        onPressed: () {
+                          var clientId = CliAgencyCubit.get(context).cliModel.uid;
+                          var agencyId = CliAgencyCubit.get(context).cliModel.agencyId;
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AppointmentFormScreen(client : clientId,agency : agencyId)));
+                        },
+                        icon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.handshake, size: 30),
+                        ),
+                        label: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("REQUEST AN APPOINTMENT",style: TextStyle(fontSize: 20),),
+                        ),
+                      )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        bottom: 50,
+                        top: 10,
+                      ),
+                      child: ElevatedButton.icon(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (builder)=> CalendarScreen()));
+                        },
+                        icon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.calendar_today, size: 30),
+                        ),
+                        label: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("VIEW APPOINTMENTS",style: TextStyle(fontSize: 20),),
+                        ),
+                      )
+                    ),
+                  ],
+                ),
               ),
               condition: state is! LoadingAgencyState,
 

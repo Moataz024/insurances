@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:insurances/model/agency_model.dart';
 import 'package:insurances/model/client_model.dart';
@@ -15,10 +16,10 @@ class CliAgencyCubit extends Cubit<CliAgencyStates>{
   EmployeeModel employeeModel = new EmployeeModel();
   void getAgency(){
     emit(LoadingAgencyState());
-    FirebaseFirestore.instance.collection('clients').get()
+    FirebaseFirestore.instance.collection('clients').where('uid',isEqualTo: FirebaseAuth.instance.currentUser!.uid).get()
       .then((value) {
        value.docs.forEach((element) {
-         cliModel = ClientModel.fromJson(element.data());
+            cliModel = ClientModel.fromJson(element.data());
          FirebaseFirestore.instance.collection('agencies').get()
           .then((value) {
             value.docs.forEach((element) {
@@ -31,8 +32,9 @@ class CliAgencyCubit extends Cubit<CliAgencyStates>{
                      employeeModel = EmployeeModel.fromJson(element.data());
                    }
                  });
+                 emit(GetAgencySuccessState());
               });
-              emit(GetAgencySuccessState());
+
               }
             });
          }).catchError((error)=> emit(GetAgencyErrorState(error.toString())));

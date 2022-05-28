@@ -40,7 +40,7 @@ class CliCubit extends Cubit<CliStates>{
     await FirebaseFirestore.instance.collection('clients').where('uid',isEqualTo: FirebaseAuth.instance.currentUser!.uid).get()
         .then((value) {
           value.docs.forEach((element) {
-            if(element.get('uid')== FirebaseAuth.instance.currentUser!.uid){
+            if(element.get('uid') == FirebaseAuth.instance.currentUser!.uid){
               model = ClientModel.fromJson(element.data());
             }
           });
@@ -59,7 +59,7 @@ class CliCubit extends Cubit<CliStates>{
               notId++;
               NotificationService().showNotification(
                 notId,
-                'Facturation d\'assurance',
+                'Facture numéro ${notId}',
                 'Facture de mantant : ${element.get('budget')} avec DLL : ${element.get('ddl')}',
                 5,
               );

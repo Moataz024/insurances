@@ -26,6 +26,7 @@ class CreateEmployeeCubit extends Cubit<CreateEmployeeStates> {
     required cin,
     required phone,
     required responsible,
+    required accepted,
     required confirmed,
     required password,
   }) {
@@ -48,6 +49,7 @@ class CreateEmployeeCubit extends Cubit<CreateEmployeeStates> {
         phone: phone,
         cin: cin,
         responsible: responsible,
+        accepted: accepted,
         confirmed: confirmed,
       );
       FirebaseFirestore.instance

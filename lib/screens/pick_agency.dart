@@ -52,12 +52,14 @@ class _FormValidationWithDropdownState
                         return Scaffold(
                           appBar: AppBar(),
                           body: Center(
-                            child: Container(
-                              child: Text(
-                                'No agencies found',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 40,
+                            child: SingleChildScrollView(
+                              child: Container(
+                                child: Text(
+                                  'No agencies found',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 40,
+                                  ),
                                 ),
                               ),
                             ),
@@ -70,67 +72,69 @@ class _FormValidationWithDropdownState
                         agency = snapshot.data?.docs[0].get('agencyId');
                         debugPrint('setDefault make: $agency');
                       }
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 110,
-                              bottom: 20,
-                            ),
-                            child: Text(
-                              'Choose your agency',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                      return SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 110,
+                                bottom: 20,
+                              ),
+                              child: Text(
+                                'Choose your agency',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
-                          ),
-                          divider(),
-                          SizedBox(height: 100,),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(32.0),
-                                  border: Border.all()),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
-                                child: SingleChildScrollView(
-                                  child: Center(
-                                    child: DropdownButton(
-                                      isExpanded: true,
-                                      value: agency,
-                                      items: snapshot.data?.docs.map((value) {
-                                        return DropdownMenuItem(
-                                          value: value.get('agencyId'),
-                                          child: Text('${value.get('name')}'),
-                                        );
-                                      }).toList(),
-                                      onChanged: (value) {
-                                        setState(
-                                              () {
-                                                agency = value;
-                                            // Selected value will be stored
-                                            // Default dropdown value won't be displayed anymore
-                                            setDefaultMake = false;
-                                            // Set makeModel to true to display first car from list
-                                            setDefaultMakeModel = true;
-                                          },
-                                        );
-                                      },
+                            divider(),
+                            SizedBox(height: 50,),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Container(
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(32.0),
+                                    border: Border.all()),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                                  child: SingleChildScrollView(
+                                    child: Center(
+                                      child: DropdownButton(
+                                        isExpanded: true,
+                                        value: agency,
+                                        items: snapshot.data?.docs.map((value) {
+                                          return DropdownMenuItem(
+                                            value: value.get('agencyId'),
+                                            child: Text('${value.get('name')}'),
+                                          );
+                                        }).toList(),
+                                        onChanged: (value) {
+                                          setState(
+                                                () {
+                                                  agency = value;
+                                              // Selected value will be stored
+                                              // Default dropdown value won't be displayed anymore
+                                              setDefaultMake = false;
+                                              // Set makeModel to true to display first car from list
+                                              setDefaultMakeModel = true;
+                                            },
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       );
                     },
                   ),
                 ),
-                SizedBox(height: 80,),
+                SizedBox(height: 20,),
                 Center(
                   child: agency != null
                       ? StreamBuilder<QuerySnapshot>(
@@ -146,13 +150,13 @@ class _FormValidationWithDropdownState
                           child:
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
+                              horizontal: 10,
                             ),
                             child: Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
-                                    left: 10,
+                                    right: 10,
                                   ),
                                   child: Text(
                                     'Your agency is : ',
@@ -163,22 +167,19 @@ class _FormValidationWithDropdownState
                                   fontWeight: FontWeight.bold,
                                 ),),
                                 Spacer(),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: FloatingActionButton(
-                                    backgroundColor:agencyName == null ? Colors.grey : Colors.blue,
-                                    child: Icon(
-                                      Icons.navigate_next,
-                                    ),
-                                    isExtended: true,
-                                    onPressed: () {
-                                    agency == null ? Navigator.push(context,MaterialPageRoute(builder: (context)=> EmployeeWithAgencyExistsRegisterScreen(agencyId: agency,)))
-                                    :
-                                        showToast(
-                                            message: 'Please select your agency'
-                                        );
-                                    },
+                                FloatingActionButton(
+                                  backgroundColor:agencyName == null ? Colors.grey : Colors.blue,
+                                  child: Icon(
+                                    Icons.navigate_next,
                                   ),
+                                  isExtended: true,
+                                  onPressed: () {
+                                  agency == null ? Navigator.push(context,MaterialPageRoute(builder: (context)=> EmployeeWithAgencyExistsRegisterScreen(agencyId: agency,)))
+                                  :
+                                      showToast(
+                                          message: 'Please select your agency'
+                                      );
+                                  },
                                 ),
                               ],
                             ),

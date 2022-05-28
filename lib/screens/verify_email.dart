@@ -27,6 +27,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   void initState() {
+    bool? isClient;
     user = auth.currentUser;
     if(user != null){
       user?.sendEmailVerification();
@@ -148,23 +149,25 @@ class _VerifyEmailState extends State<VerifyEmail> {
   bool confirmed = false;
   Future<void> checkEmailVerified() async {
     user = auth.currentUser;
+    bool? isClient;
     await user?.reload();
     if(user!.emailVerified){
       timer!.cancel();
-      if(!isClient!){
-        FirebaseFirestore.instance.collection('employees').where('email',isEqualTo: auth.currentUser!.email).get()
-            .then((value) {
-          value.docs.forEach((element) {
-            confirmed = element.get('confirmed');
-            FirebaseFirestore.instance.collection('employees').doc('${element.id}').update(
-                {'uid': '${auth.currentUser!.uid}'});
-          });
-          confirmed ? Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> AgencyHomeScreen()))
-              : Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> ChooseRoleScreen()));
+      await FirebaseFirestore.instance.collection('clients').get()
+          .then((value) {
+        value.docs.forEach((element) {
+          if(element.get('email') == FirebaseAuth.instance.currentUser!.email){
+            isClient = true;
+          }
         });
-      }else{
-        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> ClientHomeScreen()));
-      }
+        if(isClient == null){
+          isClient = false;
+        }
+      });
+      isClient! ?
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> ClientHomeScreen()))
+          :
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AgencyHomeScreen()));
     }
   }
 

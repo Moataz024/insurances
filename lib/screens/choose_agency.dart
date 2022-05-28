@@ -17,9 +17,7 @@ class _EmployeeRegisterScreenState extends State<ChooseAgencyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: lightTheme ? Colors.blueAccent : Colors.blueGrey,
-      ),
+
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blueGrey,
       body: Column(
@@ -128,8 +126,8 @@ class _EmployeeRegisterScreenState extends State<ChooseAgencyScreen> {
           Spacer(),
           Padding(
             padding: const EdgeInsets.only(
-              left: 300,
-              bottom: 20,
+              left: 200,
+              bottom: 10,
             ),
             child: FloatingActionButton(
               onPressed: (){
@@ -138,7 +136,7 @@ class _EmployeeRegisterScreenState extends State<ChooseAgencyScreen> {
               backgroundColor: Colors.blueGrey,
               child: Icon(
                 Icons.navigate_next,
-                size: 40,
+                size: 30,
               ),
             ),
           ),

@@ -151,6 +151,7 @@ class _CreateEmployeeScreenState extends State<CreateEmployeeScreen> {
                                     cin: cinController!.text.toString(),
                                     phone: phoneController!.text.toString(),
                                     responsible: false,
+                                    accepted: true,
                                     confirmed: true,
                                     password: cinController!.text.toString(),
                                   );
