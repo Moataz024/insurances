@@ -14,7 +14,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
-        children: [],
+        children: [
+
+        ],
       ),
     );
   }

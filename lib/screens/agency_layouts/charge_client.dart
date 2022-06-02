@@ -200,6 +200,9 @@ class _ChargeClientScreenState extends State<ChargeClientScreen> {
                           return 'Deadline cannot be empty!';
                         }
                       },
+
+                      //TODO : Rappel RDV
+
                       keyboardType: TextInputType.datetime,
                       labelText: 'Deadline',
                       onTap: () {

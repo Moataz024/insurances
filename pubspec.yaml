@@ -62,6 +62,8 @@ dependencies:
   gradient_widgets: ^0.6.0
   fbutton_nullsafety: ^5.0.0
   progress_state_button: ^1.0.4
+  boardview: ^0.2.2
+  document_scanner_flutter: ^0.2.7
 
 
 dev_dependencies:
