@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,18 +5,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:insurances/screens/agency_home.dart';
 import 'package:insurances/screens/agency_layouts/create_employee.dart';
-import 'package:insurances/shared/cubit/app_cubit/states.dart';
-import 'package:insurances/shared/cubit/login_cubit/cubit.dart';
-import 'package:insurances/shared/cubit/login_cubit/states.dart';
 import 'package:insurances/shared/cubit/screeens_cubits/profile_states.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-
 import '../../model/employee_model.dart';
 import '../../shared/componenets/components.dart';
-import '../../shared/cubit/employee_cubit/cubit.dart';
-import '../../shared/cubit/employee_cubit/states.dart';
-import '../../shared/cubit/screeens_cubits/alert_cubit.dart';
-import '../../shared/cubit/screeens_cubits/alert_states.dart';
 import '../../shared/cubit/screeens_cubits/profile_cubit.dart';
 
 class EmployeeProfileScreen extends StatefulWidget {

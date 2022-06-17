@@ -155,7 +155,8 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                         onPressed: () {
                           var clientId = CliAgencyCubit.get(context).cliModel.uid;
                           var agencyId = CliAgencyCubit.get(context).cliModel.agencyId;
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AppointmentFormScreen(client : clientId,agency : agencyId)));
+                          var name = CliAgencyCubit.get(context).cliModel.fullName;
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> AppointmentFormScreen(client : clientId,agency : agencyId,name : name)));
                         },
                         icon: Padding(
                           padding: const EdgeInsets.all(8.0),

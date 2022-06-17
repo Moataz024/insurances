@@ -7,14 +7,15 @@ class InsurancesAgencyCubit extends Cubit<InsurancesAgencyStates>{
   InsurancesAgencyCubit() : super(InsurancesAgencyInitialState());
 
   static InsurancesAgencyCubit get(context) => BlocProvider.of(context);
-  List<Map<String,AgencyModel>> agencyList = [];
+  List<String> agencyList = ['Select your agency...',];
+  List<String> agencyIdList = [];
   void getAllAgencies() {
+    emit(InsurancesAgencyGetLoadingState());
     FirebaseFirestore.instance.collection('agencies').snapshots().listen((value) {
       for (var element in value.docs) {
-        agencyList.add(
-            {element.reference.id: AgencyModel.fromJson(element.data())});
+        agencyList.add(element.get('name').toString());
+        agencyIdList.add(element.get('agencyId').toString());
       }
-
       print(agencyList.length);
       emit(InsurancesAgencyGetSuccessState());
     });
@@ -37,7 +38,7 @@ class InsurancesAgencyCubit extends Cubit<InsurancesAgencyStates>{
     //     employeeModel = EmployeeModel.fromJson(element.data());
     //   });
     // });
-    emit(InsurancesAgencyGetLoadingState());
+
     await FirebaseFirestore.instance.collection('agencies').get().then((value) {
         value.docs.forEach((element) {
           agencies?.add(AgencyModel.fromJson(element.data()));
@@ -54,6 +55,5 @@ class InsurancesAgencyCubit extends Cubit<InsurancesAgencyStates>{
       emit(InsurancesAgencyGetErrorState(error.toString()));
       print('THERE IS AN ERROR : '+error.toString());
     });
-
   }
 }

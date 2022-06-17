@@ -4,6 +4,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:insurances/screens/agency_layouts/notifications_screen.dart';
 import 'package:insurances/screens/chat_screen.dart';
 import 'package:insurances/screens/login_screen.dart';
 import 'package:insurances/shared/componenets/constants.dart';
@@ -20,15 +21,22 @@ class AgencyHomeScreen extends StatefulWidget {
 }
 
 class _AgencyHomeScreenState extends State<AgencyHomeScreen> {
+  bool responsible = false;
 
   GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
+      create: (BuildContext context) => AppCubit()..responsibility(),
       child: BlocConsumer<AppCubit,AppStates>(
-        listener: (BuildContext context, state) {  },
+        listener: (BuildContext context, state) {
+          if (state is CheckedState){
+            setState(() {
+              responsible = AppCubit.get(context).responsible;
+            });
+          }
+        },
         builder: (BuildContext context, Object? state)
         {
           var cubit = AppCubit.get(context);
@@ -51,12 +59,14 @@ class _AgencyHomeScreenState extends State<AgencyHomeScreen> {
                 ],
               ),
               actions: [
+                responsible ?
                 IconButton(
                     onPressed: (){
-
+                      if(responsible)
+                        Navigator.push(context, MaterialPageRoute(builder: (builder)=> NotificationsScreen()));
                     },
                     icon: Icon(Icons.notifications)
-                ),
+                ) : Container(),
                 IconButton(
                     onPressed: (){
                       Navigator.push(context,MaterialPageRoute(builder: (context) => ChatScreen()));

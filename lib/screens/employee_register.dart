@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:insurances/screens/home_screen.dart';
+import 'package:insurances/screens/pick_agency.dart';
 import 'package:insurances/shared/cubit/agency_cubit/cubit.dart';
 
 import '../shared/componenets/components.dart';
@@ -12,7 +13,8 @@ import '../shared/cubit/register_cubit/states.dart';
 import 'agency_home.dart';
 
 class EmployeeRegisterScreen extends StatefulWidget {
-  const EmployeeRegisterScreen({Key? key}) : super(key: key);
+  final agencyId;
+  const EmployeeRegisterScreen({Key? key,this.agencyId}) : super(key: key);
   @override
   _EmployeeRegisterScreenState createState() => _EmployeeRegisterScreenState();
 }
@@ -55,6 +57,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
           ),
           body: Center(
             child: SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -147,7 +150,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
                                     cin: cinController!.text.toString(),
                                     phone: phoneController!.text.toString(),
                                     responsible: true,
-                                    confirmed: false,
+                                    accepted: false,
                                   );
                                 }
                             }),

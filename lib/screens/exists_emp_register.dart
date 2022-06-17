@@ -93,7 +93,6 @@ class _EmployeeRegisterScreenState extends State<EmployeeWithAgencyExistsRegiste
                         labelText: 'Identity number (CIN)'
                     ),
                     SizedBox(height: 10,),
-
                     SizedBox(height: 10,),
                     SizedBox(height: 30,),
                     divider(),
@@ -110,8 +109,9 @@ class _EmployeeRegisterScreenState extends State<EmployeeWithAgencyExistsRegiste
                                     email: FirebaseAuth.instance.currentUser!.email!,
                                     cin: cinController!.text.toString(),
                                     phone: phoneController!.text.toString(),
-                                    responsible: true,
-                                    confirmed: false,
+                                    responsible: false,
+                                    updated: false,
+                                    accepted: false,
                                     agencyId: widget.agencyId,
                                   );
                                 }

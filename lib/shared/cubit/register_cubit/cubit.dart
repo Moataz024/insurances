@@ -26,7 +26,7 @@ class InsurancesRegisterCubit extends Cubit<InsurancesRegisterStates> {
     required String phone,
     required String cin,
     required bool responsible,
-    required bool confirmed,
+    required bool accepted,
 })  {
      FirebaseFirestore.instance.collection('agencies')
         .where("responsibleId", isEqualTo: FirebaseAuth.instance.currentUser!.uid).get()
@@ -44,6 +44,9 @@ class InsurancesRegisterCubit extends Cubit<InsurancesRegisterStates> {
          cin : cin,
          responsible: responsible,
          uid: FirebaseAuth.instance.currentUser?.uid,
+         accepted: true,
+         updated: false,
+         confirmed: true,
        );
        emit(InsurancesEmployeeCreationLoadingState());
        FirebaseFirestore.instance

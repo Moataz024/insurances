@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:insurances/screens/choose_role.dart';
+import 'package:insurances/screens/employee_register.dart';
 import 'package:insurances/screens/home_screen.dart';
+import 'package:insurances/screens/pick_agency.dart';
 import 'package:insurances/screens/verify_email.dart';
 import 'package:insurances/shared/componenets/components.dart';
 import '../shared/cubit/agency_cubit/cubit.dart';
@@ -45,7 +47,9 @@ class _registrationScreenState extends State<registrationScreen> {
             });
           }
           if(state is InsurancesRegisterSuccessState){
-            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => VerifyEmail()),ModalRoute.withName('/verify_email'),);
+            Future.delayed(Duration(seconds: 1), (){
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FormValidationWithDropdown()),ModalRoute.withName('/employee_register'),);
+            });
           }
         },
         builder: (BuildContext context, state) {

@@ -8,8 +8,6 @@ class AppointmentCubit extends Cubit<AppointmentStates>{
 
   static AppointmentCubit get(context) => BlocProvider.of(context);
 
-
-
    void createAppointment({
     required year,
     required month,
@@ -20,6 +18,7 @@ class AppointmentCubit extends Cubit<AppointmentStates>{
     required agencyId,
     required clientId,
     required accepted,
+    required name,
 })  {
     emit(CreateAppointmentLoadingState());
     MeetingModel appointment = new MeetingModel(
@@ -32,6 +31,8 @@ class AppointmentCubit extends Cubit<AppointmentStates>{
       agencyId: agencyId,
       client: clientId,
       accepted: accepted,
+      canceled: false,
+      clientName: name,
     );
      FirebaseFirestore.instance.collection('appointments').doc().set(
       appointment.toMap()

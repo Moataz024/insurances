@@ -22,7 +22,8 @@ class EmpCubit extends Cubit<EmpStates> {
     required String phone,
     required String cin,
     required bool responsible,
-    required bool confirmed,
+    required bool updated,
+    required bool accepted,
     required String agencyId,
   }) {
       EmployeeModel model = EmployeeModel(
@@ -33,6 +34,8 @@ class EmpCubit extends Cubit<EmpStates> {
         cin: cin,
         responsible: responsible,
         uid: FirebaseAuth.instance.currentUser?.uid,
+        accepted: accepted,
+        updated: updated,
       );
       emit(CreateEmployeeLoadingState());
       FirebaseFirestore.instance

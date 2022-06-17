@@ -9,7 +9,9 @@ class MeetingModel {
   String? client;
   String? agent;
   bool? accepted;
-  bool? updated;
+  bool? updated = false;
+  bool? canceled;
+  String? clientName;
 
 
   MeetingModel({
@@ -24,6 +26,8 @@ class MeetingModel {
     this.agent,
     this.accepted,
     this.updated,
+    this.canceled,
+    this.clientName,
   });
 
 
@@ -39,6 +43,8 @@ class MeetingModel {
     agent = json['agent'];
     accepted = json['accepted'];
     updated = json['updated'];
+    canceled = json['canceled'];
+    clientName = json['clientName'];
   }
 
   Map<String,dynamic> toMap(){
@@ -54,6 +60,8 @@ class MeetingModel {
       'agent' : agent,
       'accepted' : accepted,
       'updated' : updated,
+      'canceled' :  canceled,
+      'clientName' :  clientName,
     };
   }
 }

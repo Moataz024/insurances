@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:insurances/model/client_model.dart';
 import 'package:insurances/screens/agency_layouts/charge_client.dart';
+import 'package:insurances/screens/agency_layouts/documents_layout.dart';
+import 'package:insurances/screens/client_documents.dart';
 import 'package:insurances/shared/cubit/employee_cubit/states.dart';
 
 import '../../shared/componenets/components.dart';
@@ -174,11 +176,48 @@ class _ResponsibleHomeScreenState extends State<ResponsibleHomeScreen> {
                                             ),
                                           ),
                                         ),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(vertical: 10),
+                                          child: TextButton(
+                                            style: flatButtonStyle,
+                                            onPressed: () {
+                                              final clientCIN = HomeCubit.get(context).clients[position].cin;
+                                              Navigator.push(context, MaterialPageRoute(builder: (builder)=> ClientDocuments(clientCIN: clientCIN)));
+                                            },
+                                            child: Column(
+                                              children: <Widget>[
+                                                Icon(Icons.file_open_sharp, size: 40,),
+                                                Padding(
+                                                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                                                ),
+                                                Text('View this client\'s documents'),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
                                         ButtonBar(
                                           alignment: MainAxisAlignment.spaceAround,
                                           buttonHeight: 52.0,
                                           buttonMinWidth: 90.0,
                                           children: <Widget>[
+                                            TextButton(
+                                              style: flatButtonStyle,
+                                              onPressed: () {
+                                                final clientCIN = HomeCubit.get(context).clients[position].cin;
+                                                final employeeId = HomeCubit.get(context).empModel.uid;
+                                                final agencyId = HomeCubit.get(context).clients[position].agencyId;
+                                                Navigator.push(context, MaterialPageRoute(builder: (builder)=> DocumentsLayout(clientCIN: clientCIN,uid : employeeId,agencyId : agencyId)));
+                                              },
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Icon(Icons.document_scanner,size: 30,),
+                                                  Padding(
+                                                    padding: const EdgeInsets.symmetric(vertical: 2.0),
+                                                  ),
+                                                  Text('Add document',style: TextStyle(fontSize: 12),),
+                                                ],
+                                              ),
+                                            ),
                                             TextButton(
                                               style: flatButtonStyle,
                                               onPressed: () {

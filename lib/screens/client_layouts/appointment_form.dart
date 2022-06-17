@@ -10,7 +10,8 @@ import '../../shared/componenets/components.dart';
 class AppointmentFormScreen extends StatefulWidget {
   final client;
   final agency;
-  const AppointmentFormScreen({Key? key,this.client,this.agency}) : super(key: key);
+  final name;
+  const AppointmentFormScreen({Key? key,this.client,this.agency,this.name}) : super(key: key);
 
   @override
   _CalendarScreenState createState() => _CalendarScreenState();
@@ -155,6 +156,7 @@ class _CalendarScreenState extends State<AppointmentFormScreen> {
                                   subject: subjectController.text,
                                   agencyId: widget.agency,
                                   clientId: widget.client,
+                                  name: widget.name,
                                   accepted: false
                               );
                             }

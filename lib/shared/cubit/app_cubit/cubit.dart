@@ -53,6 +53,18 @@ class AppCubit extends Cubit<AppStates>{
     currentIndex = index;
     emit(AppChangeBottomNavState());
   }
-
-
+  bool responsible = false;
+  void responsibility(){
+    emit(CheckingState());
+    FirebaseFirestore.instance.collection('employees').get()
+        .then((value) => {
+       value.docs.forEach((element) {
+         if(element.get('uid') == FirebaseAuth.instance.currentUser!.uid){
+           if(element.get('responsible') == true)
+            responsible = true;
+         }
+         emit(CheckedState());
+       })
+    });
+  }
 }
