@@ -12,6 +12,7 @@ import 'package:insurances/shared/componenets/components.dart';
 import '../shared/cubit/agency_cubit/cubit.dart';
 import '../shared/cubit/register_cubit/cubit.dart';
 import '../shared/cubit/register_cubit/states.dart';
+import 'choose_agency.dart';
 
 class registrationScreen extends StatefulWidget {
   const registrationScreen({Key? key}) : super(key: key);
@@ -48,7 +49,7 @@ class _registrationScreenState extends State<registrationScreen> {
           }
           if(state is InsurancesRegisterSuccessState){
             Future.delayed(Duration(seconds: 1), (){
-              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => FormValidationWithDropdown()),ModalRoute.withName('/employee_register'),);
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => ChooseAgencyScreen()),ModalRoute.withName('/employee_register'),);
             });
           }
         },

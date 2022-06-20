@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:fbutton_nullsafety/fbutton_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:insurances/screens/client_documents.dart';
 import 'package:insurances/screens/client_layouts/appointment_form.dart';
 import 'package:insurances/screens/client_layouts/calendar_view.dart';
 import 'package:insurances/shared/cubit/cli_agency_cubit/cli_agency_cubit.dart';
@@ -34,7 +35,7 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                   children: [
                     Center(child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 40,
+                        top: 20,
                         bottom: 10,
                       ),
                       child: Padding(
@@ -85,7 +86,7 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                         Expanded(
                           flex: 2,
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
                             child: Text('${CliAgencyCubit.get(context).agencyModel.Location}',overflow: TextOverflow.ellipsis),
                           ),
                         ),
@@ -103,7 +104,7 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                         Expanded(
                           flex: 2,
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
                             child: Text('${CliAgencyCubit.get(context).agencyModel.contactPhone}',overflow: TextOverflow.ellipsis,),
                           ),
                         ),
@@ -121,7 +122,7 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                         Expanded(
                           flex: 2,
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
                             child: Text('${CliAgencyCubit.get(context).agencyModel.email}',overflow: TextOverflow.ellipsis),
                           ),
                         ),
@@ -139,7 +140,7 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                         Expanded(
                           flex: 2,
                           child: Padding(
-                            padding: const EdgeInsets.all(20),
+                            padding: const EdgeInsets.all(10),
                             child: Text('${CliAgencyCubit.get(context).employeeModel.fullName}',overflow: TextOverflow.ellipsis),
                           ),
                         ),
@@ -186,6 +187,25 @@ class _CliHomeLayoutState extends State<CliHomeLayout> {
                           child: Text("VIEW APPOINTMENTS",style: TextStyle(fontSize: 20),),
                         ),
                       )
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 30,
+                        ),
+                        child: ElevatedButton.icon(
+                          onPressed: () {
+                            var clientCIN = CliAgencyCubit.get(context).cliModel.cin;
+                            Navigator.push(context, MaterialPageRoute(builder: (builder)=> ClientDocuments(clientCIN: clientCIN,)));
+                          },
+                          icon: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.file_open, size: 30),
+                          ),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("VIEW DOCUMENTS",style: TextStyle(fontSize: 20),),
+                          ),
+                        )
                     ),
                   ],
                 ),

@@ -1,4 +1,3 @@
-
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,7 +7,6 @@ import 'package:insurances/screens/agency_layouts/notifications_screen.dart';
 import 'package:insurances/screens/chat_screen.dart';
 import 'package:insurances/screens/login_screen.dart';
 import 'package:insurances/shared/componenets/constants.dart';
-
 import '../shared/cubit/app_cubit/cubit.dart';
 import '../shared/cubit/app_cubit/states.dart';
 

@@ -154,6 +154,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
                                   );
                                 }
                             }),
+
                         fallback: (context) =>
                             Center(child: CircularProgressIndicator(),)
                     ),

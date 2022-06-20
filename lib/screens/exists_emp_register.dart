@@ -2,6 +2,8 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:insurances/screens/agency_home.dart';
+import 'package:insurances/screens/agency_layouts/pending_response.dart';
 import 'package:insurances/shared/cubit/emp_agency_exists_cubit/states.dart';
 
 import '../shared/componenets/components.dart';
@@ -93,6 +95,24 @@ class _EmployeeRegisterScreenState extends State<EmployeeWithAgencyExistsRegiste
                         labelText: 'Identity number (CIN)'
                     ),
                     SizedBox(height: 10,),
+                    defaultFormField(
+                        submit: (value){
+                          setState(() {
+                            phoneController?.text = value;
+                          });
+                        },
+                        prefix: Icons.phone,
+                        controller: phoneController,
+                        validate: (value){
+                          if(value != null){
+                            if (value.isEmpty){
+                              return 'Phone number cannot be empty';
+                            }
+                          }
+                        },
+                        keyboardType: TextInputType.number,
+                        labelText: 'Phone number '
+                    ),
                     SizedBox(height: 10,),
                     SizedBox(height: 30,),
                     divider(),
@@ -114,6 +134,7 @@ class _EmployeeRegisterScreenState extends State<EmployeeWithAgencyExistsRegiste
                                     accepted: false,
                                     agencyId: widget.agencyId,
                                   );
+                                  Navigator.push(context, MaterialPageRoute(builder: (builder)=> PendingScreen()));
                                 }
                             }),
                         fallback: (context) =>

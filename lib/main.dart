@@ -7,6 +7,7 @@ import 'package:insurances/screens/agency_home.dart';
 import 'package:insurances/screens/agency_layouts/2scanner_layout.dart';
 import 'package:insurances/screens/agency_layouts/documents_layout.dart';
 import 'package:insurances/screens/agency_layouts/notifications_screen.dart';
+import 'package:insurances/screens/agency_layouts/pending_response.dart';
 import 'package:insurances/screens/agency_layouts/scanner_layout.dart';
 import 'package:insurances/screens/agency_register.dart';
 import 'package:insurances/screens/client_documents.dart';

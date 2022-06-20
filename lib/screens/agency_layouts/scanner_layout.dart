@@ -1,19 +1,14 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:insurances/model/document_model.dart';
-import 'package:insurances/screens/agency_layouts/2scanner_layout.dart';
 import 'package:insurances/screens/agency_layouts/documents_layout.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
 import 'package:opencv_4/opencv_4.dart';
@@ -33,7 +28,6 @@ class _ScannerLayoutState extends State<ScannerLayout> {
   final picker = ImagePicker();
   final pdf = pw.Document();
   List<Uint8List> image = [];
-  var pageformat = "A4";
   File? _image;
   Uint8List? _byte, salida;
   String _versionOpenCV = 'OpenCV';
@@ -164,12 +158,12 @@ class _ScannerLayoutState extends State<ScannerLayout> {
                         fileUrl: value,
                       );
                       FirebaseFirestore.instance.collection('documents').add(model.toMap());
+                      Navigator.pop(context);
                     });
                 }).catchError((error) {});
               }, icon: Icon(Icons.add_circle,size: 30 , color: Colors.white,)),
             ],
           ),
-
         ],
       ),
     );
@@ -220,10 +214,8 @@ class _ScannerLayoutState extends State<ScannerLayout> {
   Future<Uint8List> generateDocument(
       PdfPageFormat format, imagelenght, image) async {
     final doc = pw.Document(pageMode: PdfPageMode.outlines);
-
     final font1 = await PdfGoogleFonts.openSansRegular();
     final font2 = await PdfGoogleFonts.openSansBold();
-
     for (var im in image) {
       final showimage = pw.MemoryImage(im);
 
@@ -250,7 +242,6 @@ class _ScannerLayoutState extends State<ScannerLayout> {
         ),
       );
     }
-
     return await doc.save();
   }
 }

@@ -20,7 +20,7 @@ class CalendarCubit extends Cubit<CalendarStates>{
     await FirebaseFirestore.instance.collection('appointments').get()
         .then((value) {
        value.docs.forEach((element) {
-         if(element.get('client')== FirebaseAuth.instance.currentUser!.uid){
+         if(element.get('client')== FirebaseAuth.instance.currentUser!.uid && element.get('updated') == true){
            meetingModel = MeetingModel.fromJson(element.data());
            meetings.add(new Appointment(
                startTime: DateTime(meetingModel.year!,meetingModel.month!,meetingModel.day!,meetingModel.hour!,meetingModel.minute!,0),

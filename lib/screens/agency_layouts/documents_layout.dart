@@ -67,7 +67,7 @@ class _DocumentsLayoutState extends State<DocumentsLayout> {
           Center(
             child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (builder)=> ScannerLayout()));
+                      Navigator.push(context, MaterialPageRoute(builder: (builder)=> ScannerLayout(clientCIN: widget.clientCIN,agencyId: widget.agencyId,uid: widget.uid,)));
                     },
                     child: Text("Import"),
                 ),

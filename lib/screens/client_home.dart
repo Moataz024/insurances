@@ -10,6 +10,7 @@ import 'package:insurances/shared/cubit/client_home/cli_home_states.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 import '../notification_api.dart';
+import 'client_layouts/Client_notification_center.dart';
 import 'login_screen.dart';
 
 class ClientHomeScreen extends StatefulWidget {
@@ -72,7 +73,7 @@ class _ClientHomeScreenState extends State<ClientHomeScreen> {
               actions: [
                 IconButton(
                     onPressed: (){
-
+                      Navigator.push(context, MaterialPageRoute(builder: (builder)=> ClientNotifications()));
                     },
                     icon: Icon(Icons.notifications)
                 ),

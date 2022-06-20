@@ -38,7 +38,7 @@ class ProfileCubit extends Cubit<ProfileStates>{
         .where("uid", isEqualTo: FirebaseAuth.instance.currentUser!.uid).get()
         .then((value){
       value.docs.forEach((element) {
-        model = EmployeeModel.fromJson(element.data());
+          model = EmployeeModel.fromJson(element.data());
       });
       emit(CoWorkersLoadingState());
       FirebaseFirestore.instance.collection('employees')
@@ -46,10 +46,12 @@ class ProfileCubit extends Cubit<ProfileStates>{
         print('data length : ${value.docs.length}');
         print(model.agencyId);
         value.docs.forEach((element) {
-          coWorkerModel = EmployeeModel.fromJson(element.data());
-          coWorkers.add(coWorkerModel);
-          if(coWorkerModel.uid == FirebaseAuth.instance.currentUser!.uid){
-            coWorkers.removeLast();
+          if(element.get('accepted') == true){
+            coWorkerModel = EmployeeModel.fromJson(element.data());
+            coWorkers.add(coWorkerModel);
+            if(coWorkerModel.uid == FirebaseAuth.instance.currentUser!.uid){
+              coWorkers.removeLast();
+            }
           }
           print('coWorkers : ${coWorkers.length}');
           print('coWorkers : ${coWorkerModel.fullName}');
